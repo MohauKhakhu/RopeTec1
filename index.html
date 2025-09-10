@@ -1,0 +1,1025 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RopeTec - High Access Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #003B4D;         /* Dark teal */
+            --secondary: #00B140;       /* Green */
+            --accent: #4caf50;          /* Light green */
+            --dark: #001F2A;            /* Dark background */
+            --darker: #002F3E;          /* Slightly lighter dark */
+            --light: #FFFFFF;           /* Light text */
+            --muted: #A0AEC0;           /* Muted text */
+            --card-bg: rgba(255, 255, 255, 0.95); /* Card background */
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary)); /* Gradient */
+            --glass: rgba(255, 255, 255, 0.1); /* Glass effect */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 5px;
+        }
+
+        /* Navbar */
+.navbar {
+    background: rgba(0, 31, 42, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(0, 31, 42, 0.95);
+    padding: 0.8rem 2rem;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #00B140;
+    transition: width 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00B140;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 31, 42, 0.95);
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+}
+        /* Header */
+        .header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .slideshow .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: var(--light);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 177, 64, 0.3);
+        }
+
+        /* Sections General */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-heading h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .section-heading h2 span {
+            color: var(--secondary);
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: var(--darker);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,177,64,0.2);
+        }
+
+        .service-icon {
+            background: var(--gradient);
+            color: var(--light);
+            font-size: 3rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-content p {
+            font-size: 0.95rem;
+            color: var(--darker);
+        }
+
+        /* Modal for service details */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--light);
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            color: var(--primary);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--dark);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Team Section */
+        .team-section {
+            background: var(--darker);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 10px;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            color: var(--dark);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .team-member p {
+            color: var(--darker);
+        }
+
+        /* Industries Section */
+        .industries-section {
+            background: var(--dark);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .industry-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            color: var(--dark);
+        }
+
+        .industry-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .industry-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .industry-item p {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Clients Section */
+        .clients-section {
+            background: var(--darker);
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+        }
+
+        .client-logo {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .client-logo:hover {
+            transform: translateY(-10px);
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 100px;
+            object-fit: contain;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--gradient);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .submit-btn {
+            padding: 0.8rem 2rem;
+            background: var(--light);
+            color: var(--primary);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+            color: var(--light);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            color: var(--light);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .icons a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .icons a:hover {
+            color: var(--secondary);
+        }
+
+        footer span {
+            display: block;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--darker);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .contact-details {
+                flex-direction: column;
+            }
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+<nav class="navbar" id="navbar">
+    <div class="navbar-container">
+        <div class="logo">
+            <img src="logo.png" alt="RopeTec Logo"> 
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#clients">Clients</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Header -->
+    <header class="header" id="home">
+        <div class="slideshow">
+            <div class="slide active" style="background-image: url('IMG-20250712-WA0062.jpg');"></div>
+            <div class="slide" style="background-image: url('IMG-20250713-WA0024.jpg');"></div>
+            <div class="slide" style="background-image: url('IMG-20250712-WA0062.jpg');"></div>
+        </div>
+        <div class="header-content">
+            <h1>High Access Solutions</h1>
+            <p>A Division Of Kealo Group. There’s no place too high that we cannot reach. Our experienced team of technicians will ensure that your project is completed timeously and efficiently. We take pride in maintaining high safety standards. The safety of our staff and clients is paramount.</p>
+            <a href="#services" class="cta-button">Discover Our Services</a>
+        </div>
+    </header>
+<!-- About -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="section-heading">
+                <h2>About <span>RopeTec</span></h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>RopeTec is your go-to service partner for high access work including window cleaning, painting, signage/billboard installations, telecoms infrastructure maintenance, industrial maintenance and joint sealing.</p>
+                    <p>There's no place too high that we cannot reach. Our experienced team of technicians will ensure that your project is completed timeously and efficiently. We take pride in maintaining high safety standards. The safety of our staff and clients is paramount.</p>
+                    <p>As a division of the Kaelo Group, we bring years of expertise and reliability to every project.</p>
+                </div>
+                <div class="about-image">
+                    <img src="IMG-20250712-WA0062.jpg" alt="RopeTec Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section services-section" id="services">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Our <span>Services</span></h2>
+                <p>We provide professional high-access solutions tailored to your needs, ensuring safety and efficiency.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-modal="window">
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <div class="service-content">
+                        <h3>Window Cleaning</h3>
+                        <p>Skyscrapers, factories, apartments, flats, double storey houses, malls etc. We do it all and offer window cleaning services for all types of buildings.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-modal="solar">
+                    <div class="service-icon"><i class="fas fa-solar-panel"></i></div>
+                    <div class="service-content">
+                        <h3>Solar Panel Cleaning</h3>
+                        <p>Whether it’s your roof, a power station or industrial area, we will get up there safely and clean your solar panels for optimal efficiency.</p>
+                    </div>
+                </div>
+                <!-- Add other services similarly -->
+                <div class="service-card" data-modal="painting">
+                    <div class="service-icon"><i class="fas fa-paint-roller"></i></div>
+                    <div class="service-content">
+                        <h3>Painting</h3>
+                        <p>For those painting jobs that cannot just be done by anyone, we are able to paint high access sites without hassle on all types of surfaces.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-modal="tower">
+                    <div class="service-icon"><i class="fas fa-tower-cell"></i></div>
+                    <div class="service-content">
+                        <h3>Network Tower Maintenance</h3>
+                        <p>We keep our client's high-rise properties well maintained and looking good with professional work on telecom infrastructure.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-modal="industrial">
+                    <div class="service-icon"><i class="fas fa-tools"></i></div>
+                    <div class="service-content">
+                        <h3>Industrial Maintenance</h3>
+                        <p>Working with machinery is right up our alley. We are equipped to work with both light and heavy industries in hazardous conditions.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-modal="joint">
+                    <div class="service-icon"><i class="fas fa-wrench"></i></div>
+                    <div class="service-content">
+                        <h3>Joint Sealing</h3>
+                        <p>Trust our technicians to seal and refurbish your buildings with high-quality materials.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-modal="anchor">
+                    <div class="service-icon"><i class="fas fa-anchor"></i></div>
+                    <div class="service-content">
+                        <h3>Anchor Testing and Installation</h3>
+                        <p>Professional testing and installation to ensure safety and compliance.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-modal="silo">
+                    <div class="service-icon"><i class="fas fa-warehouse"></i></div>
+                    <div class="service-content">
+                        <h3>Silo Cleaning</h3>
+                        <p>High-access cleaning to maintain operational efficiency and compliance.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-modal="cleaning">
+                    <div class="service-icon"><i class="fas fa-broom"></i></div>
+                    <div class="service-content">
+                        <h3>Industrial Cleaning</h3>
+                        <p>Comprehensive cleaning solutions for mines, power stations, and more.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div class="modal" id="window-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Window Cleaning Details</h2>
+            <p>Detailed description, methods, benefits, etc.</p>
+        </div>
+    </div>
+    <!-- Add other modals similarly -->
+
+    
+    <!-- Team -->
+    <section class="section team-section" id="team">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Our <span>Team</span></h2>
+                <p>Meet our leadership team driving excellence in high access solutions.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="gomolemo.png" alt="Gomolemo Motshwane">
+                    <h3>Gomolemo Motshwane</h3>
+                    <p>Chief Executive</p>
+                </div>
+                <div class="team-member">
+                    <img src="thati.png" alt="Thati Mmatlhapi">
+                    <h3>Thati Mmatlhapi</h3>
+                    <p>Head of Finance</p>
+                </div>
+                <div class="team-member">
+                    <img src="trevor.png" alt="Trevor Louw">
+                    <h3>Trevor Louw</h3>
+                    <p>Head of Operation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries -->
+    <section class="section industries-section" id="industries">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Industries We <span>Service</span></h2>
+                <p>We deliver high-access solutions across diverse sectors with safety and efficiency.</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-item">
+                    <i class="fas fa-plug industry-icon"></i>
+                    <p>Energy Sector</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-shopping-cart industry-icon"></i>
+                    <p>Retail</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-city industry-icon"></i>
+                    <p>Built Environment</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-building industry-icon"></i>
+                    <p>Commercial</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-satellite-dish industry-icon"></i>
+                    <p>Telecoms</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-home industry-icon"></i>
+                    <p>Residential Properties</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-industry industry-icon"></i>
+                    <p>Heavy-Duty Industries</p>
+                </div>
+                <div class="industry-item">
+                    <i class="fas fa-tools industry-icon"></i>
+                    <p>Light Industries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients -->
+    <section class="section clients-section" id="clients">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Our <span>Clients</span></h2>
+                <p>We partner with leading organizations to deliver exceptional results.</p>
+            </div>
+            <div class="clients-grid">
+                <div class="client-logo">
+                    <img src="Sun-International.webp" alt="Sun International">
+                </div>
+                <div class="client-logo">
+                    <img src="absa.png" alt="Absa">
+                </div>
+                <div class="client-logo">
+                    <img src="Attacq.png" alt="ATTACQ">
+                </div>
+                <div class="client-logo">
+                    <img src="Alexforbes-500x325-1.webp" alt="Alexforbes">
+                </div>
+                <div class="client-logo">
+                    <img src="bidvest.png" alt="Bidvest Prestige">
+                </div>
+                <div class="client-logo">
+                    <img src="auditor general south africa logo.png" alt="Auditor General South Africa">
+                </div>
+                <div class="client-logo">
+                    <img src="adamsadams.png" alt="Adams & Adams">
+                </div>
+                <div class="client-logo">
+                    <img src="takealot2.jpg" alt="Takealot">
+                </div>
+                <div class="client-logo">
+                    <img src="SAB.webp" alt="SAB">
+                </div>
+                <div class="client-logo">
+                    <img src="cityofj.jpg" alt="City of Joburg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Contact <span>Us</span></h2>
+                <p>Let's discuss how we can help with your high-access needs.</p>
+            </div>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <p>+27 71 670 0725</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <p>info@ropetec.co.za</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <p>41 Brand Road, Midrand, 1685</p>
+                </div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send</button>
+                    </form>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.981444717848!2d28.120434415027637!3d-26.12130398347626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9513bbbb5f06e7%3A0x9e2e4a6b7a5e4b1e!2s41%20Brand%20Rd%2C%20Midrand%2C%201685!5e0!3m2!1sen!2sza!4v1651234567890!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <span>A Division of Kealo Group</span>
+        <span>© 2025 RopeTec. All Rights Reserved.</span>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+            document.querySelector('.back-to-top').classList.toggle('visible', window.scrollY > 300);
+        });
+
+        // Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Slideshow
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5000);
+
+        // Modals
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const modalId = card.dataset.modal + '-modal';
+                document.getElementById(modalId).style.display = 'flex';
+            });
+        });
+
+        document.querySelectorAll('.close').forEach(close => {
+            close.addEventListener('click', () => {
+                close.parentElement.parentElement.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', e => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.section').forEach(section => {
+            gsap.from(section.querySelectorAll('.section-heading, .grid > *'), {
+                y: 50,
+                opacity: 0,
+                stagger: 0.1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Form Submission Placeholder
+        document.getElementById('contactForm').addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Message sent successfully!');
+        });
+    </script>
+</body>
+</html>
